@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<head>
+  <meta  />
+  <title>login</title>
+  <script type="text/javascript" src="js/login-index.js" ></script>
+  <link rel="stylesheet" href="css/login-index.css" />
+  
+</head>
+<body>
+  <div class="container">
+    <div class="form translate1">
+    	<div class="cont-form">
+    		  
+	    	<div class="form-sign">
+	        <div class="cont-tit">
+	        	<p>Sign in</p>
+	        </div>
+	        <div>Email</div>
+	        <input type="text" id="email" placeholder="" />
+	        <div id="form-email-message" class="arrow_box"></div> 
+	        <div>password</div>
+	        <input type="password" id="password" placeholder="" />
+	        <div id="form-password-message" class="arrow_box"></div> 
+	        <button class="button-login" onclick="buttonLogin()">Login</button>	
+	        <p class="link-creat">
+	          <a href="#" id="create-account">Create an Account</a>
+	        </p>
+	      </div>
+	      <div class="form-creat">
+        <div class="cont-tit">
+        	<p>Create Account</p>
+        </div>
+        <div>Email</div>
+        <input type="text" id="create-email" placeholder="" />
+        <div id="form1-email-message" class="arrow_box"></div> 
+        <div>password</div>
+        <input type="password" id="create-password" placeholder="" />
+        <div id="form1-password-message" class="arrow_box"></div> 
+        <div>Confirm password</div>
+        <input type="password" id="create-confirmPassword" placeholder="" />
+        <div id="form1-confirmPassword-message" class="arrow_box"></div> 
+        <button class="button-create" onclick="buttonCreate()">Create</button>	
+        <p class="link-creat">
+          <a href="#" id="sign-account" class="">Already an account?</a>
+        </p>
+      </div>
+    	</div>
+    </div>
+    <div class="message-info translate2">
+    	<div class="cont-message-info">
+		    <div class="message-info-sign">
+		    	<p class="message-info-tit">Hello There</p>
+		    	<p>Don't have an account?</p>
+		    	<p>Sign up with us today！</p>
+	    	</div>
+	    	<div class="message-info-creat">
+		    	<p class="message-info-tit">Lets get you started</p>
+		    	<p>Be part of our awesome </p>
+		    	<p>team and have fun wjith us </p>
+	    	</div>
+	    </div>
+    </div>
+  </div>
+  <script>
+  	var createAccount = document.getElementById("create-account"); //获取creat链接元素
+		var signAccount = document.getElementById("sign-account"); //获取sign链接元素
+		var form = document.getElementsByClassName("form"); //获取整个表单元素
+		var messageInfo = document.getElementsByClassName("message-info") //获取信息内容元素
+		var contForm = document.getElementsByClassName("cont-form"); //获取sign部分的表单元素
+		var formCreat = document.getElementsByClassName("form-creat"); //获取creat部分的表单元素
+		var messageInfoSign = document.getElementsByClassName("message-info-sign") //获取sign信息内容元素
+ 
+    //点击creat链接事件
+		createAccount.addEventListener("click", () => {
+			//左右位置互换
+			if(form.length > 0) {
+				form[0].className = 'form translate2'
+			}
+			if(messageInfo.length > 0) {
+				messageInfo[0].className = 'message-info translate1'
+			}
+			//表单切换
+			if(contForm.length > 0) {
+				contForm[0].className = 'cont-form translate-form1'
+			}
+			//显示信息切换
+			if(messageInfoSign.length > 0) {
+				messageInfoSign[0].className = 'message-info-sign translate-form1'
+			}
+		
+		});
+		//点击sign链接事件
+		signAccount.addEventListener("click", () => {
+			if(form.length > 0) {
+				form[0].className = 'form translate1'
+			}
+			if(messageInfo.length > 0) {
+				messageInfo[0].className = 'message-info translate2'
+			}
+			if(contForm.length > 0) {
+				contForm[0].className = 'cont-form translate-form2'
+			}
+			//显示信息切换
+			if(messageInfoSign.length > 0) {
+				messageInfoSign[0].className = 'message-info-sign translate-form2'
+			}
+		});
+		
+		
+		document.querySelector("#email").addEventListener("blur", function(e) {
+			emailVerify(e.target.value, document.getElementById("form-email-message"))
+		});
+		document.querySelector("#password").addEventListener("blur", function(e) {
+			passwordVerify(e.target.value, document.getElementById("form-password-message"))
+		});
+		document.querySelector("#create-email").addEventListener("blur", function(e) {
+			emailVerify(e.target.value, document.getElementById("form1-email-message"))
+		});
+		document.querySelector("#create-password").addEventListener("input", function(e) {
+			passwordVerify(e.target.value, document.getElementById("form1-password-message"))
+		});
+		
+		document.querySelector("#create-confirmPassword").addEventListener("input", function(e) {
+			var createPassword = document.querySelector("#create-password").value;
+			var confirmPassword = e.target.value;
+			var confirmPasswordMessage = document.getElementById("form1-confirmPassword-message");
+			confirmPasswordVerify(createPassword, confirmPassword, confirmPasswordMessage)
+		
+		})
+
+  </script>
+ 
+</body>
+
+
